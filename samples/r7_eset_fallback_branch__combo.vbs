@@ -1,0 +1,12 @@
+Dim feed, backup, c2
+' generated-noise
+unused_generated = "AAAA"
+
+feed = Replace("hxxps://telegraph.exampl" & "e.invalid/example-primary", "hxxps", "https")
+backup = ChrW(104) & "ttps://backup." & "example.invalid"
+If use_feed Then
+  c2 = feed
+Else
+  c2 = backup
+End If
+WScript.Echo c2

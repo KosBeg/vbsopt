@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "vbs-ast-ir-ssa-opt"
+version = "0.3.0"
+description = "Pure-Python research prototype for safe VBScript/HTA normalization at AST/CFG-IR/SSA level"
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "License :: OSI Approved :: MIT License",
+  "Topic :: Security",
+  "Topic :: Software Development :: Compilers",
+]
+
+[tool.setuptools]
+packages = ["vbsopt"]

