@@ -1,6 +1,8 @@
-# vbs_deobf_ssa
+# vbsopt
 
-Безпечний дослідницький прототип на чистому Python для **невиконуваної деобфускації VBS/HTA** з явними стадіями **AST → CFG IR → SSA** та rule-based проходами над підтримуваною підмножиною VBScript.
+Безпечний дослідницький прототип на чистому Python для **невиконуваної деобфускації VBS/HTA** з явними стадіями **AST -> CFG IR -> SSA** та rule-based проходами над підтримуваною підмножиною VBScript.
+
+`pyproject`-пакет має назву `vbs-ast-ir-ssa-opt`, а Python-модуль і CLI працюють через `vbsopt`.
 
 ## Що це таке
 
@@ -16,7 +18,7 @@
 - **не звертається до мережі**;
 - **не містить** живих шкідливих зразків;
 - **не зберігає** бойові IOC у працездатному вигляді;
-- віддає окремі артефакти `AST`, `IR`, `SSA`, нормалізований VBS і зведену статистику.
+- віддає окремі артефакти `AST`, `IR`, `SSA`, чистий деобфускований VBS, анотований нормалізований VBS і зведену статистику.
 
 ## Цільовий сценарій використання
 
@@ -31,18 +33,21 @@
 Найпростіший сценарій:
 
 ```bash
-python3 -m vbsopt.cli samples_general/g4_execute_literal.vbs > out.normalized.vbs
+python3 -m vbsopt.cli samples/g4_execute_literal.vbs > out.clean.vbs
 ```
 
 Або з повним експортом:
 
 ```bash
-python3 -m vbsopt.cli samples_real/r7_eset_fallback_branch.vbs \
-  --normalized out.vbs \
+python3 -m vbsopt.cli samples/g4_execute_literal.vbs \
+  --normalized out.clean.vbs \
+  --annotated-normalized out.annotated.vbs \
   --ast out.ast.txt \
   --ir out.ir.txt \
   --ssa out.ssa.txt
 ```
+
+За замовчуванням CLI друкує чистий деобфускований VBS у `stdout`, а службову статистику та індикатори пише в `stderr`.
 
 ## Підтримувана підмножина
 
@@ -55,15 +60,14 @@ python3 -m vbsopt.cli samples_real/r7_eset_fallback_branch.vbs \
 - виклики функцій і методів;
 - `If ... Then ... Else ... End If`;
 - `Function ... End Function`, `Sub ... End Sub` у фронтенді й рендері;
-- безпечні локальні перетворення:
-  - `Chr` / `ChrW`;
-  - `Replace`;
-  - `Left` / `Right` / `Mid`;
-  - `LCase` / `UCase` / `Trim` / `LTrim` / `RTrim`;
-  - `StrReverse`;
-  - `Split` / `Join(Array(...), ...)`;
-  - `CStr` / `CLng` / `CInt` / `Asc` / `AscW` / `Len` / `Hex`;
-  - очищення токенів `??` / `***` у рядках Base64;
+- `Chr` / `ChrW`;
+- `Replace`;
+- `Left` / `Right` / `Mid`;
+- `LCase` / `UCase` / `Trim` / `LTrim` / `RTrim`;
+- `StrReverse`;
+- `Split` / `Join(Array(...), ...)`;
+- `CStr` / `CLng` / `CInt` / `Asc` / `AscW` / `Len` / `Hex`;
+- очищення токенів `??` / `***` у рядках Base64;
 - безпечне розгортання `Execute` / `ExecuteGlobal`, якщо аргумент статично зводиться до літерального сценарію;
 - інлайнінг **pure helper-функцій**, якщо аргументи літеральні;
 - поширення констант і усунення мертвих присвоєнь;
@@ -80,109 +84,86 @@ python3 -m vbsopt.cli samples_real/r7_eset_fallback_branch.vbs \
 5. **SSA** вставляє `phi`-вузли в точках злиття та перейменовує змінні.
 6. **Рендер** повертає чистий деобфускований VBS для читання, а також анотований рендер для аналітичної перевірки.
 
+## Структура `samples/`
+
+У цьому checkout **весь публічний корпус злитий в один каталог** `samples/`. Окремих `samples_general/`, `samples_real/`, `samples_all/` або `*_expanded/` тут більше немає.
+
+Поточна схема імен:
+
+- `s1` .. `s7` — 7 базових модельних санітизованих зразків;
+- `g1` .. `g8` — 8 загальних synthetic VBS-обфускацій;
+- `r1` .. `r9` — 9 real-derived, але етично санітизованих сурогатів;
+- `__noise`, `__split`, `__combo` — автоматично згенеровані лексичні варіанти, що лежать поруч із базовим файлом;
+- `ssa_branch_join.vbs` — окремий мікро-зразок для smoke-перевірки SSA/`phi`, він не є частиною анотованого корпусу.
+
+Фактичний склад каталогу на диску:
+
+- 97 `.vbs` / `.hta` файлів загалом;
+- 25 базових файлів;
+- 24 файли `__noise`;
+- 24 файли `__split`;
+- 24 файли `__combo`.
+
+## Метадані та експерименти
+
+Після merge в один каталог важливо не плутати **наявність файлів** із **наявністю розмітки**:
+
+- `samples/metadata.json` зараз анотує лише зріз `r*` і його варіанти;
+- це 36 записів у `metadata.json`: 9 базових `r*` плюс 27 варіантів `__noise` / `__split` / `__combo`;
+- сумарно в цьому JSON розмічено 152 очікувані артефакти;
+- `s*`, `g*` і `ssa_branch_join.vbs` присутні в `samples/`, але **не входять** до поточного `samples/metadata.json`.
+
+Через це:
+
+- `experiments.py` з дефолтним `--samples-dir samples` зараз рахує метрики тільки для тих записів, які реально є в `samples/metadata.json`;
+- старі таблички на кшталт окремих підсумків для `samples_general`, `samples_real`, `samples_all` або `*_expanded` більше не відповідають цьому checkout.
+
+`samples/provenance.md` у поточному стані є **legacy-нотаткою** про згенеровані варіанти `r*`-зрізу, а не описом усього merged-каталогу.
+
 ## Як трактуються артефакти
 
 - **Очікуваний артефакт** — це наперед розмічений аналітично корисний рядок у `metadata.json`: URL, шлях, ключ реєстру, COM-об’єкт, launcher-команда тощо.
-- **Відновлений артефакт** — це артефакт, який знайдено в нормалізованому виході після нормалізації `hxxp(s) → http(s)`, приведення регістру та згортання VBS-escaped лапок `"" → "` для коректного зіставлення змісту, а не сирого рендеру.
-
-## Корпуси
-
-### `samples/`
-7 базових модельних санітизованих зразків із раннього proof-of-concept.
-
-### `samples_general/`
-8 загальних safe synthetic VBS-обфускацій без прив’язки до одного кластера:
-
-- `StrReverse`;
-- `Split` / `Join(Array(...), ...)`;
-- hex-літерали в `Chr`;
-- pure helper wrappers;
-- `ExecuteGlobal` на літеральному та Base64-кодованому вкладеному сценарії;
-- branch-bearing приклад для CSE.
-
-Див. також: `samples_general/provenance.md`.
-
-### `samples_real/`
-9 **real-derived**, але етично санітизованих сурогатів, побудованих за публічно описаними мотивами з HTA/VBS-кампаній. Див. `REAL_CORPUS_MAP.md`.
-
-### `samples_expanded/`, `samples_general_expanded/`, `samples_real_expanded/`
-Лексично мутовані варіанти для регресійної перевірки стійкості:
-
-- шумові коментарі й порожні рядки;
-- розщеплення довгих рядкових літералів;
-- комбіновані мутації;
-- для HTA — сторонній harmless JavaScript-блок, який не впливає на вилучення VBS.
-
-### `samples_all/`, `samples_all_expanded/`
-Merged-корпус, що поєднує базові, general та real-derived зразки.
-
-## Поточний стан результатів
-
-### Базовий корпус `samples`
-- 7 зразків;
-- 22 очікувані артефакти;
-- `0/22 → 13/22 → 20/22 → 22/22` для станів `до / baseline / AST-IR ядро / повний конвеєр`.
-
-### Загальний корпус `samples_general`
-- 8 зразків;
-- 16 очікуваних артефактів;
-- `4/16 → 4/16 → 16/16 → 16/16`.
-
-### Real-derived корпус `samples_real`
-- 9 зразків;
-- 38 очікуваних артефактів;
-- `13/38 → 24/38 → 37/38 → 38/38`;
-- сумарно `1` SSA `phi`-вузол.
-
-### Merged-корпус `samples_all`
-- 24 зразки;
-- 76 очікуваних артефактів;
-- `17/76 → 41/76 → 73/76 → 76/76`.
-
-### Expanded merged-корпус `samples_all_expanded`
-- 96 зразків;
-- 304 очікувані артефакти;
-- `44/304 → 164/304 → 292/304 → 304/304`;
-- сумарно `4` SSA `phi`-вузли.
+- **Відновлений артефакт** — це артефакт, який знайдено в нормалізованому виході після нормалізації `hxxp(s) -> http(s)`, приведення регістру та згортання VBS-escaped лапок `"" -> "` для коректного зіставлення змісту, а не сирого рендеру.
 
 ## Тести
 
-Базовий публічний набір тестів:
+Базовий запуск:
 
 ```bash
-PYTHONPATH=. python3 -m pytest -q
-# 15 passed, 1 skipped
+PYTHONPATH=. pytest -q
 ```
 
-Пропущений тест — це **опційна карантинна перевірка** користувацького зразка, який не входить до публічного бандла. Якщо локально задано `VBSOPT_EXTERNAL_SAMPLE`, опційний тест проходить окремо:
+У поточному checkout не варто очікувати, що весь suite уже повністю переприв’язаний до merged-структури:
+
+- частина unit/smoke-тестів працює на inline-прикладах і на файлах із `samples/`;
+- опційний карантинний тест пропускається, якщо не задано `VBSOPT_EXTERNAL_SAMPLE`;
+- `tests/test_pipeline.py` усе ще містить hardcoded-шляхи до прибраних каталогів `samples_general/`, `samples_real/`, `samples_all`, `samples_expanded`, тому цей файл ще не синхронізований зі злиттям у `samples/`.
+
+## Опційний карантинний контур
+
+У репозиторії лишилися утиліти для окремої валідації зовнішнього карантинного зразка:
+
+- `tools/validate_external_sample.py`;
+- `tests/test_quarantine_external_sample.py`.
+
+Але в цьому checkout **немає** каталогу `evidence/external_sample/` і немає вбудованого зовнішнього зразка. Якщо ви хочете скористатися цим контуром, передавайте власний маніфест явно:
 
 ```bash
-VBSOPT_EXTERNAL_SAMPLE=/шлях/до/8c9f356a4dc3c3a43b5567e338e108b4.vbs_infected.zip   PYTHONPATH=. python3 -m pytest -q tests/test_quarantine_external_sample.py
-# 1 passed
+python3 tools/validate_external_sample.py \
+  --input /path/to/sample.zip \
+  --manifest /path/to/manifest.json \
+  --report-dir quarantine_report
 ```
 
-Покрито:
+Для опційного pytest також потрібно задати `VBSOPT_EXTERNAL_SAMPLE`.
 
-- повний recall на `samples`, `samples_general`, `samples_real`, `samples_all`;
-- відсутність дублювання blob-анотацій;
-- SSA `phi` на join-точці;
-- `Join(Array(...), ...)`;
-- `ExecuteGlobal` на літеральному та Base64-кодованому вкладеному сценарії;
-- pure helper inlining;
-- folding `Chr(&H..)`;
-- IR CSE на дубльованому виразі;
-- smoke-прогін expanded-корпусу.
+## Відомий дріфт після merge
 
-## Додатковий карантинний зразок
+README тепер описує фактичну структуру checkout, але в кодовій базі ще залишилися місця, що очікують старий multi-directory layout:
 
-Підтримка наданого користувачем VBS-зразка винесена в окремий **опційний** контур, щоб не розповсюджувати живий шкідливий файл у публічному репозиторії.
-
-- Маніфест з defanged-артефактами: `evidence/external_sample/8c9f356a4dc3c3a43b5567e338e108b4_manifest.json`
-- Локальний валідатор: `tools/validate_external_sample.py`
-- Опційний pytest: `tests/test_quarantine_external_sample.py`
-- Згенерований у цій сесії звіт: `evidence/external_sample/local_report/report.md`
-
-Для фактично проаналізованого зразка з SHA-256 `a305b86e881ccad473e687b8639cb2ec4d17b857716ae329f0dee1e2c7a2d97e` валідатор зафіксував `1/9 → 1/9 → 9/9 → 9/9` для станів `до / baseline / AST-IR ядро / повний конвеєр`; чистий рендер стискається до короткого поведінкового ядра без шумових локальних рутин.
+- `tests/test_pipeline.py`;
+- `expand_dataset.py`;
+- legacy-текст у `samples/provenance.md`.
 
 ## Обмеження
 
@@ -194,7 +175,7 @@ VBSOPT_EXTERNAL_SAMPLE=/шлях/до/8c9f356a4dc3c3a43b5567e338e108b4.vbs_infec
 - немає повної COM-семантики;
 - немає підтримки VBE / Script Encoder;
 - немає загальної підтримки RC4 та інших спеціалізованих декодерів;
-- real-derived корпус не є зовнішньою валідацією на живому оперативному корпусі.
+- real-derived зріз у `samples/` не є зовнішньою валідацією на живому оперативному корпусі.
 
 ## Практична примітка щодо метрики рядків
 
